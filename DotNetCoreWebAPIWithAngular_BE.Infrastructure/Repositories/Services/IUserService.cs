@@ -13,6 +13,5 @@ namespace DotNetCoreWebAPIWithAngular_BE.Infrastructure.Repositories.Services
     public interface IUserService : IGenericService<User>
     {
         Task<User> Login(string email, string password);
-        JwtSecurityToken CreateToken(List<Claim> authClaims);
     }
 }

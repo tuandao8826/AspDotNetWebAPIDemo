@@ -2,6 +2,7 @@
 using DotNetCoreWebAPIWithAngular_BE.Application.Commands.UserFeatures.Models;
 using DotNetCoreWebAPIWithAngular_BE.Application.Features.UserFeatures.Models;
 using DotNetCoreWebAPIWithAngular_BE.Application.Queries.UserFeatures.Models;
+using DotNetCoreWebAPIWithAngular_BE.Infrastructure.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,7 @@ namespace DotNetCoreWebAPIWithAngular_BE.Controllers
         }
 
         [HttpGet("GetAllUser")]
+        [Authorize()]
         public async Task<IActionResult> Get()
         {
             var result = await _mediator.Send(new GetAllUserQuery());

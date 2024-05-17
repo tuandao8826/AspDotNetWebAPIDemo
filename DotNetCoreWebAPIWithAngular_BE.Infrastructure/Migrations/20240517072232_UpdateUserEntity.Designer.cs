@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetCoreWebAPIWithAngular_BE.Infrastructure.Migrations
 {
     [DbContext(typeof(WebAPIWithAngularDemoContext))]
-    [Migration("20240421144838_InitDatabase")]
-    partial class InitDatabase
+    [Migration("20240517072232_UpdateUserEntity")]
+    partial class UpdateUserEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,16 +31,19 @@ namespace DotNetCoreWebAPIWithAngular_BE.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RefeshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RefeshTokenExpired")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
