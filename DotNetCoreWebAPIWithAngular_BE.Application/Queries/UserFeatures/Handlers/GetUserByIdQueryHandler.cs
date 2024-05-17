@@ -25,7 +25,7 @@ namespace DotNetCoreWebAPIWithAngular_BE.Application.Queries.UserFeatures.Handle
             var user = await _entities.UserService.GetById(request.Id);
 
             if (user == null)
-                return new ApiSuccessResult<User>("Người dùng không tồn tại.");
+                return new ApiErrorResult<User>("Người dùng không tồn tại.");
             else
                 return new ApiSuccessResult<User>(user);
         }
