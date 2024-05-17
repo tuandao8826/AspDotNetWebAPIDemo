@@ -18,69 +18,29 @@ namespace DotNetCoreWebAPIWithAngular_BE.Infrastructure.Repositories.Implementat
             this._context = context;
         }
 
-        public async Task<ApiResult<List<T>>> GetAll()
+        public async Task<List<T>> GetAll()
         {
-            try
-            {
-                var data = _context.Set<T>().ToList();
-                return new ApiSuccessResult<List<T>>(data);
-            }
-            catch
-            {
-                return new ApiErrorResult<List<T>>("Lỗi hệ thống!");
-            }
+            return _context.Set<T>().ToList();
         }
 
-        public async Task<ApiResult<T>> GetById(int id)
+        public async Task<T> GetById(Guid id)
         {
-            try
-            {
-                var data = await _context.Set<T>().FindAsync(id);
-                return new ApiSuccessResult<T>(data);
-            }
-            catch
-            {
-                return new ApiErrorResult<T>("Lỗi hệ thống!");
-            }
+            return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<ApiResult<string>> Create(T entity)
+        public void Create(T entity)
         {
-            try
-            {
-                _context.Add(entity);
-                return new ApiSuccessResult<string>();
-            }
-            catch 
-            {
-                return new ApiErrorResult<string>("Lỗi hệ thống!");
-            }
+            _context.Add(entity);
         }
 
-        public async Task<ApiResult<string>> Delete(T entity)
+        public void Delete(T entity)
         {
-            try
-            {
-                _context.Remove(entity);
-                return new ApiSuccessResult<string>();
-            }
-            catch
-            {
-                return new ApiErrorResult<string>("Lỗi hệ thống!");
-            }
+            _context.Remove(entity);
         }
 
-        public async Task<ApiResult<string>> Update(T entity)
+        public void Update(T entity)
         {
-            try
-            {
-                _context.Update(entity);
-                return new ApiSuccessResult<string>();
-            }
-            catch
-            {
-                return new ApiErrorResult<string>("Lỗi hệ thống!");
-            }
+            _context.Update(entity);
         }
     }
 }

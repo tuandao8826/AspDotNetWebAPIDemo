@@ -9,10 +9,10 @@ namespace DotNetCoreWebAPIWithAngular_BE.Infrastructure.Repositories.Services
 {
     public interface IGenericService<T> where T : class
     {
-        Task<ApiResult<T>> GetById(int id);
-        Task<ApiResult<List<T>>> GetAll();
-        Task<ApiResult<string>> Create(T entity);
-        Task<ApiResult<string>> Update(T entity);
-        Task<ApiResult<string>> Delete(T entity);
+        Task<T> GetById(Guid id);
+        Task<List<T>> GetAll();
+        void Create(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }

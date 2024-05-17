@@ -1,4 +1,5 @@
 ﻿using DotNetCoreWebAPIWithAngular_BE.Application.Commands.UserFeatures;
+using DotNetCoreWebAPIWithAngular_BE.Application.Commands.UserFeatures.Models;
 using DotNetCoreWebAPIWithAngular_BE.Entities.Entities;
 using DotNetCoreWebAPIWithAngular_BE.Infrastructure.Common.ResponseNotifications;
 using DotNetCoreWebAPIWithAngular_BE.Infrastructure.Repositories.Services;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DotNetCoreWebAPIWithAngular_BE.Application.Commands.CommandHandlers.UserFeatures
+namespace DotNetCoreWebAPIWithAngular_BE.Application.Commands.UserFeatures.Handlers
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ApiResult<string>>
     {
@@ -25,11 +26,10 @@ namespace DotNetCoreWebAPIWithAngular_BE.Application.Commands.CommandHandlers.Us
         {
             try
             {
-                ApiResult<string> apiResult = request.Valid();
-
-                // Validation
-                if (apiResult.IsSuccessed == false)
-                    return apiResult;
+                // Kiểm tra thông tin vào
+                string message;
+                if (request.Valid(out message) == false)
+                    return new ApiSuccessResult<string>(message);
 
                 // kiểm tra người dùng tồn tại
                 //...
@@ -42,10 +42,7 @@ namespace DotNetCoreWebAPIWithAngular_BE.Application.Commands.CommandHandlers.Us
                     FullName = request.FullName,
                 };
 
-                apiResult = await _entities.UserService.Create(user);
-
-                if (apiResult.IsSuccessed == false)
-                    return apiResult;
+                _entities.UserService.Create(user);
 
                 _entities.SaveChange();
 
