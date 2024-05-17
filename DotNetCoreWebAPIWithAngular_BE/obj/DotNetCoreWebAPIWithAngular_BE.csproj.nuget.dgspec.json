@@ -162,6 +162,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.19, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.19, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.19, )"
@@ -222,9 +230,6 @@
             "projectReferences": {
               "C:\\Huflit_Study_Material\\Project\\tutorial\\FullDotNetCoreSix\\DotNetCoreWebAPIWithAngular_BE.Application\\DotNetCoreWebAPIWithAngular_BE.Application.csproj": {
                 "projectPath": "C:\\Huflit_Study_Material\\Project\\tutorial\\FullDotNetCoreSix\\DotNetCoreWebAPIWithAngular_BE.Application\\DotNetCoreWebAPIWithAngular_BE.Application.csproj"
-              },
-              "C:\\Huflit_Study_Material\\Project\\tutorial\\FullDotNetCoreSix\\DotNetCoreWebAPIWithAngular_BE.Infrastructure\\DotNetCoreWebAPIWithAngular_BE.Infrastructure.csproj": {
-                "projectPath": "C:\\Huflit_Study_Material\\Project\\tutorial\\FullDotNetCoreSix\\DotNetCoreWebAPIWithAngular_BE.Infrastructure\\DotNetCoreWebAPIWithAngular_BE.Infrastructure.csproj"
               }
             }
           }

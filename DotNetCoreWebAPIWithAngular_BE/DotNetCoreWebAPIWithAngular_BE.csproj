@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotNetCoreWebAPIWithAngular_BE.Application\DotNetCoreWebAPIWithAngular_BE.Application.csproj" />
-    <ProjectReference Include="..\DotNetCoreWebAPIWithAngular_BE.Infrastructure\DotNetCoreWebAPIWithAngular_BE.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

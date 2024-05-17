@@ -3,8 +3,11 @@ using DotNetCoreWebAPIWithAngular_BE.Infrastructure.DBContext;
 using DotNetCoreWebAPIWithAngular_BE.Infrastructure.Extensions;
 using DotNetCoreWebAPIWithAngular_BE.Infrastructure.Repositories.Implementations;
 using DotNetCoreWebAPIWithAngular_BE.Infrastructure.Repositories.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,14 +18,29 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Kết nối database 
+// Conn database 
 builder.Services.AddDbContext<WebAPIWithAngularDemoContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
 
-// Repositories
+// DI Repositories
 builder.Services.AddRepositories();
 
 // MediaR
 builder.Services.AddApplicationMediaR();
+
+// Setup Authentication JWT 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:ValidIssuer"],
+        ValidAudience = builder.Configuration["Jwt:ValidAudience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Secret"]))
+    };
+});
 
 // Build App
 var app = builder.Build();
@@ -34,9 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Đăng ký Middleware
-//app.UseMiddleware<SimpleMiddleware>();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

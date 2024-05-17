@@ -1,5 +1,6 @@
 ﻿using DotNetCoreWebAPIWithAngular_BE.Application.Commands.UserFeatures;
 using DotNetCoreWebAPIWithAngular_BE.Application.Commands.UserFeatures.Models;
+using DotNetCoreWebAPIWithAngular_BE.Application.Features.UserFeatures.Models;
 using DotNetCoreWebAPIWithAngular_BE.Application.Queries.UserFeatures.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -20,19 +21,19 @@ namespace DotNetCoreWebAPIWithAngular_BE.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Resgister(CreateUserCommand command)
+        public async Task<IActionResult> Resgister(CreateUserCommand request)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(request);
 
-            return result.IsSuccessed ? Ok(result) : BadRequest(result);
+            return Ok(result);
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(CreateUserCommand command)
+        public async Task<IActionResult> Login(LoginRequest request)
         {
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(request);
 
-            return result.IsSuccessed ? Ok(result) : BadRequest(result);
+            return Ok(result);
         }
 
         [HttpGet("GetAllUser")]
@@ -40,7 +41,7 @@ namespace DotNetCoreWebAPIWithAngular_BE.Controllers
         {
             var result = await _mediator.Send(new GetAllUserQuery());
 
-            return result.IsSuccessed ? Ok(result) : BadRequest(result);
+            return Ok(result);
         }
 
         [HttpGet("GetUserById/{id}")]
@@ -48,7 +49,7 @@ namespace DotNetCoreWebAPIWithAngular_BE.Controllers
         {
             var result = await _mediator.Send(new GetUserByIdQuery { Id = id });
 
-            return result.IsSuccessed ? Ok(result) : BadRequest(result);
+            return Ok(result);
         }
     }
 }
