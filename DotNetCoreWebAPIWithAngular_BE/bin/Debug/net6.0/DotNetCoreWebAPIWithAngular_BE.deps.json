@@ -571,6 +571,10 @@
         }
       },
       "DotNetCoreWebAPIWithAngular_BE.Entities/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.19",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.19"
+        },
         "runtime": {
           "DotNetCoreWebAPIWithAngular_BE.Entities.dll": {}
         }
@@ -578,8 +582,6 @@
       "DotNetCoreWebAPIWithAngular_BE.Infrastructure/1.0.0": {
         "dependencies": {
           "DotNetCoreWebAPIWithAngular_BE.Entities": "1.0.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.19",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.19",
           "Microsoft.EntityFrameworkCore": "6.0.19",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.19"
         },

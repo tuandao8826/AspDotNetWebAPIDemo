@@ -4,6 +4,7 @@ using DotNetCoreWebAPIWithAngular_BE.Infrastructure.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetCoreWebAPIWithAngular_BE.Infrastructure.Migrations
 {
     [DbContext(typeof(WebAPIWithAngularDemoContext))]
-    partial class WebAPIWithAngularDemoContextModelSnapshot : ModelSnapshot
+    [Migration("20240521032504_InitDatabase")]
+    partial class InitDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

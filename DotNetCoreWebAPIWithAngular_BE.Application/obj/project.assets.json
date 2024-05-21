@@ -700,6 +700,10 @@
       "DotNetCoreWebAPIWithAngular_BE.Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.19",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.19"
+        },
         "compile": {
           "bin/placeholder/DotNetCoreWebAPIWithAngular_BE.Entities.dll": {}
         },
@@ -712,8 +716,6 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "DotNetCoreWebAPIWithAngular_BE.Entities": "1.0.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.19",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.19",
           "Microsoft.EntityFrameworkCore": "6.0.19",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.19"
         },
